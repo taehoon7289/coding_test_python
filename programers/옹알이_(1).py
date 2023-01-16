@@ -1,19 +1,12 @@
-# 발음해야하는 단어
 def solution(babbling):
-    # 발음가능
-    avail = ["aya", "ye", "woo", "ma"]
+    arr = ["aya", "ye", "woo", "ma"]
     answer = 0
-    for w in babbling:
-        start = 0
-        end = 1
-        for a in avail:
-            while start < end and end <= len(w):
-                if a == w[start:end]:
-                    print(start, end, w[start:end], a)
-                    answer += 1
-                    break
-                else:
-                    end += 1
+    for bab in babbling:
+        for a in arr:
+            if a in bab:
+                bab = bab.replace(a, ' ')
+        if bab.strip() == '':
+            answer += 1
     return answer
 
 
