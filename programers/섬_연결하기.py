@@ -26,6 +26,27 @@ def solution(n, costs):
     return answer
 
 
+def solution2(n, costs):
+    answer = 0
+
+    def get_parent(n, parent):
+        if n == parent[n]:
+            return n
+        return get_parent(parent[n], parent)
+
+    costs.sort(key=lambda c: c[2])
+    parent = [i for i in range(n)]
+
+    for n1, n2, cost in costs:
+        a, b = get_parent(n1, parent), get_parent(n2, parent)
+        if a != b:
+            parent[max(a, b)] = min(a, b)
+            answer += cost
+    return answer
+
 if __name__ == '__main__':
     print(solution(4, [[0, 1, 1], [0, 2, 2], [1, 2, 5], [1, 3, 1], [2, 3, 8]]))
     print(solution(5, [[0, 1, 5], [1, 2, 3], [2, 3, 3], [3, 1, 2], [3, 0, 4], [2, 4, 6], [4, 0, 7]]))
+
+    print(solution2(4, [[0, 1, 1], [0, 2, 2], [1, 2, 5], [1, 3, 1], [2, 3, 8]]))
+    print(solution2(5, [[0, 1, 5], [1, 2, 3], [2, 3, 3], [3, 1, 2], [3, 0, 4], [2, 4, 6], [4, 0, 7]]))
