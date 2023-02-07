@@ -32,8 +32,17 @@ def solution2(triangle):
     return answer
 
 
+
+def solution3(triangle):
+    for i in range(len(triangle)-1, 0, -1):
+        for j in range(i):
+            triangle[i-1][j] += max(triangle[i][j], triangle[i][j+1])
+    return triangle[0][0]
+
 if __name__ == '__main__':
     # 처음에 생각한 역 삼각형 형태로
     print(solution([[7], [3, 8], [8, 1, 0], [2, 7, 4, 4], [4, 5, 2, 6, 5]]))
     # 삼각형 형태에서 인덱스만 뒤에서 부터 시작
     print(solution2([[7], [3, 8], [8, 1, 0], [2, 7, 4, 4], [4, 5, 2, 6, 5]]))
+    # 스킬체크로 나와서 다시 해봄
+    print(solution3([[7], [3, 8], [8, 1, 0], [2, 7, 4, 4], [4, 5, 2, 6, 5]]))
