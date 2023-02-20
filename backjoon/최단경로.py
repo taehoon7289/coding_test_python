@@ -13,7 +13,9 @@ def solution():
         while q:
             now_cost, now_node = heapq.heappop(q)
             for next_cost, next_node in graph[now_node]:
+                # 중요포인트
                 if dist[next_node] > now_cost + next_cost:
+                    # 최소값 등장시에만 우선순위큐에 넣기
                     dist[next_node] = now_cost + next_cost
                     heapq.heappush(q, [dist[next_node], next_node])
         return dist
